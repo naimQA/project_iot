@@ -1,0 +1,24 @@
+1)-  creer container mysql : docker run -d \
+  --name mysql \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -e MYSQL_DATABASE=school \
+  -p 3306:3306 \
+  mysql:8
+     ################# tester connexion : mysql -h ipVM  -uroot -proot
+configurer db: dans le fichier  backend/server.js:
+
+    
+            const db = await mysql.createPool({
+            host: process.env.DB_HOST || 'ipVM',
+            user: process.env.DB_USER || 'root',
+            password: process.env.DB_PASSWORD || 'root',
+            database: process.env.DB_NAME || 'school'
+            });
+
+
+2)  cd backend 
+3) npm install
+4) npm start
+5) tester : curl http://localhost:3000/etudiants
+
+echo -n "nodepass" | base64
